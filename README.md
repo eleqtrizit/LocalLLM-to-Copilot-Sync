@@ -12,13 +12,11 @@ A Python tool to automatically synchronize custom AI models with GitHub Copilot 
 
 ## Installation
 
-```bash
-# Clone the repository
-git clone <repository-url>
-cd copilot-model-sync
+Install uv:
+https://docs.astral.sh/uv/getting-started/installation/#installation-methods
 
-# Install dependencies
-pip install -e .
+```bash
+uv tool install https://github.com/eleqtrizit/LocalLLM-to-Copilot-Sync
 ```
 
 ## Usage
