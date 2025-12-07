@@ -16,7 +16,7 @@ Install uv:
 https://docs.astral.sh/uv/getting-started/installation/#installation-methods
 
 ```bash
-uv tool install https://github.com/eleqtrizit/LocalLLM-to-Copilot-Sync
+uv tool install git+https://github.com/eleqtrizit/LocalLLM-to-Copilot-Sync
 ```
 
 ## Usage
