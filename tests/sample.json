@@ -1,0 +1,41 @@
+{    
+    "roo-cline.allowedCommands": [
+        "git log",
+        "git diff",
+        "git show",
+        "npm test",
+        "npm install",
+        "tsc"
+    ],
+    "print.folder.fileNames": true,
+    "print.folder.include": [],
+    "print.folder.exclude": [
+        "{bin,obj,out}",
+        "node_modules",
+        "data",
+        "**/*.{bin,exe,dll,hex,pdb,pdf,pfx,png,jpg,gif,bmp,suo,design}"
+    ],
+    "print.folder.maxLines": 1200,
+    "print.folder.maxFiles": 30,
+    "print.folder.includeFileList": false,
+    "github.copilot.chat.agent.thinkingTool": true,
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+    "extensions.ignoreRecommendations": true,
+    "chat.mcp.gallery.enabled": true,
+    "editor.accessibilitySupport": "off",
+    "workbench.colorTheme": "OM Theme (Night Owl Italic)",
+    "roo-cline.deniedCommands": [],
+    "github.copilot.chat.customOAIModels": {
+        "gpt-oss-120b": {
+            "name": "gpt-oss-120b",
+            "url": "http://abuntu:8123",
+            "toolCalling": true,
+            "vision": false,
+            "thinking": true,
+            "maxInputTokens": 128000,
+            "maxOutputTokens": 4096,
+            "requiresAPIKey": false
+        }
+    }
+}
