@@ -63,7 +63,8 @@ def demo_with_sample_data():
     print(f"  Disabled models: {len(current_settings['github.copilot.chat.customOAIModels.disabled'])}")
 
     print("\n🌐 API Models Found:")
-    for model in api_models:
+    sorted_api_models = sorted(api_models, key=lambda x: x['id'].lower())
+    for model in sorted_api_models:
         print(f"  - {model['id']}")
 
     # Compare models

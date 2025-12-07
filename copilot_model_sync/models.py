@@ -47,10 +47,10 @@ def compare_models(current_models: Dict[str, Any], disabled_models: Dict[str, An
     new_models = list(api_model_ids.difference(current_model_ids.union(disabled_model_ids)))
 
     return {
-        'matching': matching,
-        'obsolete': obsolete,
-        'to_reenable': to_reenable,
-        'new_models': new_models
+        'matching': sorted(matching, key=str.lower),
+        'obsolete': sorted(obsolete, key=str.lower),
+        'to_reenable': sorted(to_reenable, key=str.lower),
+        'new_models': sorted(new_models, key=str.lower)
     }
 
 
