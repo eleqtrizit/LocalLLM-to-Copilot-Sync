@@ -29,15 +29,22 @@ def extract_base_url(host: str) -> str:
     return host
 
 
-def detect_api_endpoint(base_url: str) -> Optional[str]:
+def detect_api_endpoint(base_url: str, api_key: Optional[str] = None) -> Optional[str]:
     """
     Detect the correct API endpoint by testing /v1/models and /models.
 
     :param base_url: Base URL to test
     :type base_url: str
+    :param api_key: Optional API key for authentication
+    :type api_key: Optional[str]
     :return: Detected endpoint URL or None if neither works
     :rtype: Optional[str]
     """
+    # Prepare headers with API key if provided
+    headers = {}
+    if api_key:
+        headers['Authorization'] = f'Bearer {api_key}'
+
     # Test endpoints in order of preference
     endpoints = [
         f"{base_url.rstrip('/')}/v1/models",
@@ -47,7 +54,7 @@ def detect_api_endpoint(base_url: str) -> Optional[str]:
     for endpoint in endpoints:
         try:
             console.print(f"[blue]Testing endpoint:[/blue] {endpoint}")
-            response = requests.get(endpoint, timeout=10)
+            response = requests.get(endpoint, headers=headers, timeout=10)
             response.raise_for_status()
 
             # Check if response is valid JSON with expected structure
@@ -63,17 +70,24 @@ def detect_api_endpoint(base_url: str) -> Optional[str]:
     return None
 
 
-def fetch_models(endpoint: str) -> List[Dict[str, Any]]:
+def fetch_models(endpoint: str, api_key: Optional[str] = None) -> List[Dict[str, Any]]:
     """
     Fetch models from the detected API endpoint.
 
     :param endpoint: API endpoint URL
     :type endpoint: str
+    :param api_key: Optional API key for authentication
+    :type api_key: Optional[str]
     :return: List of model dictionaries
     :rtype: List[Dict[str, Any]]
     """
+    # Prepare headers with API key if provided
+    headers = {}
+    if api_key:
+        headers['Authorization'] = f'Bearer {api_key}'
+
     try:
-        response = requests.get(endpoint, timeout=30)
+        response = requests.get(endpoint, headers=headers, timeout=30)
         response.raise_for_status()
 
         data = response.json()

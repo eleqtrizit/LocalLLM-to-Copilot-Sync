@@ -38,6 +38,9 @@ python -m copilot_model_sync --host http://localhost:8080 --dry-run
 
 # Set requiresAPIKey=true for all models with the same base URL
 python -m copilot_model_sync --host http://localhost:8080 --api-key-required
+
+# Use API key for authentication with the API endpoint
+python -m copilot_model_sync --host http://localhost:8080 --api-key YOUR_API_KEY_HERE
 ```
 
 ### Update Logic
@@ -48,6 +51,14 @@ The tool follows these rules when synchronizing models:
 2. **Obsolete Models**: Models in your configuration but not in the API are moved to the disabled section
 3. **Re-enable Models**: Models in the disabled section but available in the API are re-enabled
 4. **New Models**: Models available in the API but not in your configuration are added (with default parameters)
+
+### API Key Authentication
+
+When using the `--api-key` flag, the tool will authenticate with the API endpoint using Bearer token authentication. This is useful when working with API endpoints that require authentication.
+
+The API key is passed in the `Authorization` header as `Bearer YOUR_API_KEY_HERE`.
+
+Note: The `--api-key` flag is for authenticating with the API endpoint, while the `--api-key-required` flag is for setting the `requiresAPIKey=true` parameter in the VSCode configuration for your models.
 
 ### API Key Requirement
 

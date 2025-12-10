@@ -45,6 +45,10 @@ def parse_arguments() -> argparse.Namespace:
         action="store_true",
         help="Set requiresAPIKey=true for all models with the same base URL, overriding any previous settings"
     )
+    parser.add_argument(
+        "--api-key",
+        help="API key for authenticating with the API endpoint"
+    )
 
     return parser.parse_args()
 
@@ -75,7 +79,7 @@ def main() -> int:
 
         # Detect API endpoint
         console.print(f"[blue]Detecting API endpoint for:[/blue] {args.host}")
-        endpoint = detect_api_endpoint(args.host)
+        endpoint = detect_api_endpoint(args.host, args.api_key)
         if not endpoint:
             console.print("[red]Failed to detect API endpoint[/red]")
             return 1
@@ -84,7 +88,7 @@ def main() -> int:
 
         # Fetch models from API
         console.print("[blue]Fetching models from API...[/blue]")
-        api_models = fetch_models(endpoint)
+        api_models = fetch_models(endpoint, args.api_key)
         if not api_models:
             console.print("[red]Failed to fetch models from API[/red]")
             return 1
